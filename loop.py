@@ -358,5 +358,3 @@ for country in range(len(countries)):
     if 'land'  in countries[country]:
         print(countries[country])
 
-
-#Reverse
