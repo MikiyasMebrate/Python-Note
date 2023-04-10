@@ -1,31 +1,76 @@
+#List Comprehension
+#List comprehension in Python is a compact way of creating a list from a sequence. 
+#It is a short way to create a new list. List comprehension is considerably faster than processing a
+# list using the for loop.
+
+
+#Syntax 
+## syntax
+#[i for i in iterable if expression]
+
+language = 'python'
+lst = [i for i in language]
+print(lst)
+
+numbers = [i for i in range(10) if i%2==0]
+print(numbers)
+
+
+square = [i*i for i in range(11)]
+print(square)
+
+print()
+print()
+number_square = [(i, i*i) for i in range(11)]
+print(number_square)
+
+number_square = [[i,i*i] for i in range(11)]
+print(number_square)
+
+
+
 #Lambda Function
-#Lambda function is a small anonymous function without a name. It can take any number of arguments, but can only have one expression. Lambda function is similar to anonymous functions in JavaScript. We need it when we want to write an anonymous function inside another function.
+#Lambda function is similar to anonymous functions in JavaScript. We need it when we want to write an anonymous function inside another function.
+square = lambda x: x**2
+print(square(3))
 
-#Creating a Lambda Function
-#To create a lambda function we use lambda keyword followed by a parameter(s), followed by an expression. See the syntax and the example below. Lambda function does not use return but it explicitly returns the expression.
 
-# syntax
-x = lambda param1, param2, param3: param1 + param2 + param2
-print(x(arg1, arg2, arg3))
-#Example:
+loop_lambda = lambda x : [x for i in range(x) if i%2==0 ]
+print(loop_lambda(10))
 
-# Named function
-def add_two_nums(a, b):
-    return a + b
 
-print(add_two_nums(2, 3))     # 5
-# Lets change the above function to a lambda function
-add_two_nums = lambda a, b: a + b
-print(add_two_nums(2,3))    # 5
+#Exercises
+#1 Filter only negative Numbers
+numbers = [-4, -3, -2, -1, 0, 2, 4, 6]
+negative_number = [i for i in numbers if i<0]
+print(negative_number)
 
-# Self invoking lambda function
-(lambda a, b: a + b)(2,3) # 5 - need to encapsulate it in print() to see the result in the console
+#2 Flatten the following list of lists of lists to a one dimensional list :
 
-square = lambda x : x ** 2
-print(square(3))    # 9
-cube = lambda x : x ** 3
-print(cube(3))    # 27
+list_of_lists =[[[1, 2, 3]], [[4, 5, 6]], [[7, 8, 9]]]
 
-# Multiple variables
-multiple_variable = lambda a, b, c: a ** 2 - 3 * b + 4 * c
-print(multiple_variable(5, 5, 3)) # 22
+list_of_number = [i for row in list_of_lists for j in row for i in j] 
+print(list_of_number)
+
+#3 Using list comprehension create the following list of tuples:
+ten_by_ten = [(i,1,i,i*i,i*i*i,i*i*i*i,i*i*i*i*i) for i in range(11) ]
+print(ten_by_ten)
+
+#4 Flatten the following list to a new list:
+
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+
+countries_code = [[i[0].upper(), i[0][0:3].upper(), i[1].upper()] for count in countries for i in count]
+print(countries_code)
+
+#5  list to a list of dictionaries:
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+dict_contries = [{'country':i[0],'city':i[1]} for count in countries for i in count]
+print(dict_contries)
+
+
+# 6 Change the following list of lists to a list of concatenated strings
+names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
+
+full_name  = [i[0]+" "+i[1] for full in names for i in full]
+print(full_name)
